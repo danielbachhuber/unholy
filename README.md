@@ -21,12 +21,38 @@ The `Unholy_Testcase` class extends the `WP_UnitTestcase` class. Update your pro
 
 Extending the `Unholy_Testcase` class exposes two helper methods: `get_permalink_as_dom()` and `get_feed_as_dom()`. These can be used to get a DOMDocument-esque object representing the view. Then, use the `qp()` function to navigate the object using jQuery-style selectors.
 
-As an example, see how you'd test the Twenty Fifteen theme for the site title and description in the header:
+As an example, here is how you might test the Twenty Fifteen theme for the site title and description in the header:
 
 ```php
-update_option( 'blogname', 'Unholy Site Title' );
-update_option( 'blogdescription', 'Unholy Site Description' );
-$dom = $this->get_permalink_as_dom( '/' );
-$this->assertEquals( 'Unholy Site Title', qp( $dom, '#masthead .site-title' )->text() );
-$this->assertEquals( 'Unholy Site Description', qp( $dom, '#masthead .site-description' )->text() );
+<?php
+
+class Test_TwentyFifteen_Theme extends Unholy_Testcase {
+
+	public function test_header() {
+		update_option( 'blogname', 'Unholy Site Title' );
+		update_option( 'blogdescription', 'Unholy Site Description' );
+		$dom = $this->get_permalink_as_dom( '/' );
+		$this->assertEquals( 'Unholy Site Title', qp( $dom, '#masthead .site-title' )->text() );
+		$this->assertEquals( 'Unholy Site Description', qp( $dom, '#masthead .site-description' )->text() );
+	}
+
+}
+```
+
+And here is how you might test your RSS feed for a post:
+
+```php
+<?php
+
+class Test_RSS_Feed extends Unholy_Testcase {
+
+	public function test_rss_feed_loads_post() {
+		$user_id = $this->factory->user->create( array( 'display_name' => 'Unholy Author' ) );
+		$this->factory->post->create( array( 'post_title' => 'Unholy Post Title', 'post_author' => $user_id ) );
+		$dom = $this->get_feed_as_dom( '/feed/' );
+		$this->assertEquals( 'Unholy Post Title', qp( $dom, 'channel item title' )->eq(0)->text() );
+		$this->assertEquals( 'Unholy Author', qp( $dom, 'channel item dc|creator')->eq(0)->text() );
+	}
+
+}
 ```
