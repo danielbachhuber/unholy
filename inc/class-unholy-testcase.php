@@ -42,7 +42,7 @@ class Unholy_Testcase extends WP_UnitTestcase {
 	/**
 	 * Copy-pasta of wp-includes/template-loader.php
 	 */
-	protected function load_template() {
+	private function load_template() {
 		do_action( 'template_redirect' );
 
 		$template = false;
@@ -137,7 +137,7 @@ class Unholy_Testcase extends WP_UnitTestcase {
 	/**
 	 * Set up permalink structure
 	 */
-	protected function setup_permalink_structure() {
+	private function setup_permalink_structure() {
 		global $wp_rewrite;
 
 		$structure = get_option( 'permalink_structure' );
