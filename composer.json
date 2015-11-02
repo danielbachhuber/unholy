@@ -1,0 +1,21 @@
+{
+    "name": "danielbachhuber/unholy",
+    "description": "Markup testing for WordPress using jQuery-style selectors.",
+    "require": {
+        "querypath/querypath": "^3.04",
+        "masterminds/html5": "^2.1"
+    },
+    "autoload": {
+        "files": [
+            "inc/class-unholy-testcase.php"
+        ]
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Bachhuber",
+            "email": "daniel@handbuilt.co"
+        }
+    ],
+    "minimum-stability": "dev"
+}
