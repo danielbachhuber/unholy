@@ -2,6 +2,7 @@
     "name": "danielbachhuber/unholy",
     "description": "Markup testing for WordPress using jQuery-style selectors.",
     "require": {
+        "php": ">=5.3.0",
         "querypath/querypath": "^3.04",
         "masterminds/html5": "^2.1"
     },
