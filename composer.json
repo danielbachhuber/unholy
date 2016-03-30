@@ -7,8 +7,8 @@
         "masterminds/html5": "^2.1"
     },
     "autoload": {
-        "files": [
-            "inc/class-unholy-testcase.php"
+        "classmap": [
+            "inc/"
         ]
     },
     "license": "MIT",

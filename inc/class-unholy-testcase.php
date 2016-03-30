@@ -2,7 +2,7 @@
 
 use Masterminds\HTML5;
 
-class Unholy_Testcase extends WP_UnitTestcase {
+abstract class Unholy_Testcase extends WP_UnitTestcase {
 
 	public function setUp() {
 		parent::setUp();
