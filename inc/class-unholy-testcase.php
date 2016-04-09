@@ -8,9 +8,6 @@ abstract class Unholy_Testcase extends WP_UnitTestcase {
 		parent::setUp();
 		$this->setup_permalink_structure();
 		$_SERVER['REQUEST_METHOD'] = 'GET';
-		$this->setOutputCallback( function() {
-			return '';
-		});
 	}
 
 	protected function get_permalink_as_dom( $path ) {
