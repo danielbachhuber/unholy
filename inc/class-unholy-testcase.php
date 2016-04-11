@@ -8,17 +8,13 @@ abstract class Unholy_Testcase extends WP_UnitTestcase {
 		parent::setUp();
 		$this->setup_permalink_structure();
 		$_SERVER['REQUEST_METHOD'] = 'GET';
-		$this->setOutputCallback( function() {
-			return '';
-		});
 	}
 
 	protected function get_permalink_as_dom( $path ) {
 		ob_start();
 		$this->go_to( $path );
 		$this->load_template();
-		$output = ob_get_contents();
-		ob_end_flush();
+		$output = ob_get_clean();
 
 		$html5 = new HTML5();
 		$dom = $html5->loadHTML($output);
@@ -30,8 +26,7 @@ abstract class Unholy_Testcase extends WP_UnitTestcase {
 		ob_start();
 		$this->go_to( $path );
 		@$this->do_feed();
-		$output = ob_get_contents();
-		ob_end_flush();
+		$output = ob_get_clean();
 
 		$doc = new DOMDocument;
 		$doc->loadXML( $output );
